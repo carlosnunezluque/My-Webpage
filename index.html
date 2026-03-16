@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Carlos Núñez Luque - SysAdmin specializing in scalable infrastructure for tech startups.">
 <title>Carlos Núñez Luque | SysAdmin</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
@@ -501,7 +502,6 @@ section{padding:7rem 0}
           </div>
           <a href="https://github.com/carlosnunezluque" target="_blank" rel="noopener" class="btn-social" title="GitHub"><i class="fa-brands fa-github"></i></a>
           <a href="https://www.linkedin.com/in/carlos-n%C3%BAñez-luque-98b085343" target="_blank" rel="noopener" class="btn-social" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="/cdn-cgi/l/email-protection#dcb2a9b2b9a6b0a9ada9b9bfece49cbbb1bdb5b0f2bfb3b1" class="btn-social" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
       <div class="hero-visual-wrap" style="position:relative">
@@ -1035,8 +1035,9 @@ RULES:
     setTimeout(()=>{ if(!isOpen){ panel.style.display='none'; panel.classList.remove('ai-close'); } }, 240);
   }
 
-  btn.addEventListener('click', ()=> isOpen ? closePanel() : openPanel());
-  closeBtn.addEventListener('click', closePanel);
+  btn.addEventListener('click', e => { e.stopPropagation(); isOpen ? closePanel() : openPanel(); });
+  closeBtn.addEventListener('click', e => { e.stopPropagation(); closePanel(); });
+  panel.addEventListener('click', e => e.stopPropagation());
   document.addEventListener('click', e => {
     if(isOpen && !panel.contains(e.target) && !wrap.contains(e.target)) closePanel();
   });
